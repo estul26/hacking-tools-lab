@@ -21,8 +21,8 @@ services:
       context: .
       dockerfile: target.Dockerfile
     command: ["python", "/opt/lab/lab_target.py", "web"]
-    expose:
-      - "80"
+    ports:
+      - "127.0.0.1:8081:80"
     networks:
       nmap_net:
         ipv4_address: 172.30.10.20
@@ -32,12 +32,12 @@ services:
       context: .
       dockerfile: target.Dockerfile
     command: ["python", "/opt/lab/lab_target.py", "services"]
-    expose:
-      - "2222"
-      - "2525"
-      - "6379"
-      - "8000"
-      - "5353/udp"
+    ports:
+      - "127.0.0.1:12222:2222"
+      - "127.0.0.1:12525:2525"
+      - "127.0.0.1:16380:6379"
+      - "127.0.0.1:8001:8000"
+      - "127.0.0.1:15353:5353/udp"
     networks:
       nmap_net:
         ipv4_address: 172.30.10.30
@@ -45,7 +45,6 @@ services:
 networks:
   nmap_net:
     driver: bridge
-    internal: true
     ipam:
       config:
         - subnet: 172.30.10.0/24

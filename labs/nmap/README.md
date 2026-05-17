@@ -1,7 +1,8 @@
 # Nmap Guide And Local Lab
 
-This lab teaches Nmap with a private Docker network and intentionally exposed
-local targets. It is designed for authorized practice only.
+This lab teaches Nmap with Docker targets that are also published to
+`127.0.0.1`, so you can practice from both the scanner container and your host
+machine. It is designed for authorized practice only.
 
 Nmap, short for Network Mapper, is an open source tool for network exploration,
 asset discovery, port scanning, service detection, and security auditing. The
@@ -19,7 +20,8 @@ https://nmap.org/docs.html.
 
 ## Lab Topology
 
-The Compose file creates one internal network with no published host ports:
+The Compose file creates a Docker lab network and publishes each target service
+to localhost only:
 
 | Container | IP | Purpose |
 | --- | --- | --- |
@@ -27,9 +29,19 @@ The Compose file creates one internal network with no published host ports:
 | `target-web` | `172.30.10.20` | HTTP training service on TCP `80`. |
 | `target-services` | `172.30.10.30` | TCP `2222`, `2525`, `6379`, `8000` and UDP `5353`. |
 
-Because the Docker network is marked `internal: true`, the running lab is
-isolated from external networks. Image builds still need internet access the
-first time Docker pulls base images or installs packages.
+Host-reachable endpoints:
+
+| Host endpoint | Container service |
+| --- | --- |
+| `127.0.0.1:8081` | `target-web:80` HTTP |
+| `127.0.0.1:12222` | `target-services:2222` SSH-like banner |
+| `127.0.0.1:12525` | `target-services:2525` SMTP-like banner |
+| `127.0.0.1:16380` | `target-services:6379` Redis-like service |
+| `127.0.0.1:8001` | `target-services:8000` HTTP alternate |
+| `127.0.0.1:15353/udp` | `target-services:5353/udp` UDP lab service |
+
+All published ports are bound to `127.0.0.1`, not `0.0.0.0`, so they stay on
+your machine and are not exposed to your LAN.
 
 ## Start The Lab
 
@@ -39,6 +51,13 @@ Run these commands from the repository root:
 docker compose -f labs/nmap/docker-compose.yml up --build -d
 docker compose -f labs/nmap/docker-compose.yml ps
 docker compose -f labs/nmap/docker-compose.yml exec scanner nmap --version
+```
+
+Open the web targets from your host:
+
+```bash
+open http://127.0.0.1:8081
+open http://127.0.0.1:8001
 ```
 
 Clean up when finished:
@@ -80,6 +99,13 @@ nmap target-web
 nmap 172.30.10.20
 nmap 172.30.10.20-30
 nmap 172.30.10.0/24
+nmap 127.0.0.1
+```
+
+From your host, scan the localhost-published targets:
+
+```bash
+nmap -sV -p 8081,8001,12222,12525,16380 127.0.0.1
 ```
 
 Use `-iL targets.txt` for a target file and `--exclude` or `--excludefile` to
@@ -110,6 +136,13 @@ Scan the most common TCP ports on one target:
 ```bash
 docker compose -f labs/nmap/docker-compose.yml exec scanner \
   nmap target-web
+```
+
+Scan the same lab from your host:
+
+```bash
+nmap -p 8081 127.0.0.1
+nmap -p 12222,12525,16380,8001 127.0.0.1
 ```
 
 Scan specific ports:
@@ -146,6 +179,12 @@ Useful port selectors:
 ```bash
 docker compose -f labs/nmap/docker-compose.yml exec scanner \
   nmap -sV -p 2222,2525,6379,8000 target-services
+```
+
+Host version detection uses the localhost-published ports:
+
+```bash
+nmap -sV -p 8081,8001,12222,12525,16380 127.0.0.1
 ```
 
 This helps distinguish real services from misleading port numbers. For example,
@@ -196,6 +235,12 @@ reply to empty probes. This lab includes a UDP service on port `5353`:
 ```bash
 docker compose -f labs/nmap/docker-compose.yml exec scanner \
   nmap -sU -p 5353 target-services
+```
+
+From your host:
+
+```bash
+nmap -sU -p 15353 127.0.0.1
 ```
 
 If you see `open|filtered`, it means Nmap did not get enough evidence to choose
@@ -303,16 +348,24 @@ docker compose -f labs/nmap/docker-compose.yml exec scanner \
   nmap -sV -oA scans/target-services -p 2222,2525,6379,8000 target-services
 ```
 
+From the host, use the published localhost ports:
+
+```bash
+nmap -sV -oA labs/nmap/scans/localhost-services \
+  -p 8081,8001,12222,12525,16380 127.0.0.1
+```
+
 ## Exercises
 
 1. Find all live hosts on `172.30.10.0/24`.
 2. Identify the open TCP ports on `target-web`.
 3. Identify the open TCP ports on `target-services`.
-4. Run `-sV` and write down which service each open port appears to run.
-5. Run `-sC -sV` against `target-web` and compare the output to the basic scan.
-6. Run a UDP scan against `target-services` on port `5353`.
-7. Save XML output for `target-services` and inspect it with `less`.
-8. Repeat a scan with `--reason` and explain why Nmap marked each port open.
+4. Scan `127.0.0.1` on the published host ports and compare the results.
+5. Run `-sV` and write down which service each open port appears to run.
+6. Run `-sC -sV` against `target-web` and compare the output to the basic scan.
+7. Run a UDP scan against `target-services` on port `5353`, then against host port `15353`.
+8. Save XML output for `target-services` and inspect it with `less`.
+9. Repeat a scan with `--reason` and explain why Nmap marked each port open.
 
 ## Command Cheat Sheet
 
@@ -321,6 +374,7 @@ docker compose -f labs/nmap/docker-compose.yml exec scanner \
 | Check Nmap version | `nmap --version` |
 | Ping scan | `nmap -sn 172.30.10.0/24` |
 | Basic scan | `nmap target-web` |
+| Host localhost scan | `nmap -sV -p 8081,8001,12222,12525,16380 127.0.0.1` |
 | Skip host discovery | `nmap -Pn target-web` |
 | Specific TCP ports | `nmap -p 80,443 target-web` |
 | All TCP ports | `nmap -p- target-services` |

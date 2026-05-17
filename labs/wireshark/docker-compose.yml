@@ -1,0 +1,52 @@
+name: wireshark-lab
+
+services:
+  target-services:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python", "/opt/lab/lab_target.py"]
+    ports:
+      - "127.0.0.1:8090:8080"
+      - "127.0.0.1:12526:2525"
+      - "127.0.0.1:16381:6379"
+      - "127.0.0.1:15300:5300/udp"
+    networks:
+      wireshark_net:
+        ipv4_address: 172.31.20.20
+
+  client:
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    command: ["python", "/opt/lab/traffic_client.py"]
+    environment:
+      TARGET_HOST: target-services
+      TRAFFIC_INTERVAL_SECONDS: "4"
+    depends_on:
+      - target-services
+    networks:
+      wireshark_net:
+        ipv4_address: 172.31.20.10
+
+  analyzer:
+    build:
+      context: .
+      dockerfile: analyzer.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./captures:/work/captures
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    depends_on:
+      - client
+    network_mode: "service:client"
+
+networks:
+  wireshark_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.31.20.0/24
