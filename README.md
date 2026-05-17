@@ -11,6 +11,7 @@ environments.
 - [Nmap guide and local Docker lab](labs/nmap/README.md)
 - [Netcat guide and local Docker lab](labs/netcat/README.md)
 - [Real local target lab](labs/local-target/README.md)
+- [RustScan guide and local Docker lab](labs/rustscan/README.md)
 - [Tcpdump guide and local packet-capture lab](labs/tcpdump/README.md)
 - [Traceroute guide and routed local Docker lab](labs/traceroute/README.md)
 - [Wget guide and local Docker lab](labs/wget/README.md)

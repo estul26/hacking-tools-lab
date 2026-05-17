@@ -1,0 +1,41 @@
+name: rustscan-lab
+
+services:
+  scanner:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./scans:/work/scans
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    depends_on:
+      - target-services
+    networks:
+      rustscan_net:
+        ipv4_address: 172.41.110.10
+
+  target-services:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18086:80"
+      - "127.0.0.1:12224:2222"
+      - "127.0.0.1:12529:2525"
+      - "127.0.0.1:16384:6379"
+      - "127.0.0.1:18087:8000"
+    networks:
+      rustscan_net:
+        ipv4_address: 172.41.110.20
+
+networks:
+  rustscan_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.41.110.0/24
