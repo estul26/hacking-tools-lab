@@ -1,0 +1,37 @@
+name: netcat-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python", "/opt/lab/lab_target.py"]
+    ports:
+      - "127.0.0.1:19001:9001"
+      - "127.0.0.1:19002:9002"
+      - "127.0.0.1:19003:9003"
+      - "127.0.0.1:19080:9080"
+      - "127.0.0.1:19004:9004/udp"
+    networks:
+      netcat_net:
+        ipv4_address: 172.33.40.20
+
+  toolbox:
+    build:
+      context: .
+      dockerfile: toolbox.Dockerfile
+    command: ["sleep", "infinity"]
+    volumes:
+      - ./transcripts:/work/transcripts
+    depends_on:
+      - target
+    networks:
+      netcat_net:
+        ipv4_address: 172.33.40.10
+
+networks:
+  netcat_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.33.40.0/24
