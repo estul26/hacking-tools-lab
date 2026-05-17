@@ -1,0 +1,8 @@
+admin
+api
+dev
+staging
+vpn
+mail
+old
+files

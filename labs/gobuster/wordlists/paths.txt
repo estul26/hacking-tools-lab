@@ -1,0 +1,14 @@
+admin
+backup
+dev
+debug
+portal
+private
+status
+health
+login
+api/status
+files
+uploads
+metrics
+secret

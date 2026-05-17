@@ -1,0 +1,8 @@
+admin
+api
+dev
+staging
+intranet
+test
+cdn
+old
