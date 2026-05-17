@@ -1,0 +1,86 @@
+name: traceroute-lab
+
+services:
+  toolbox:
+    build:
+      context: .
+      dockerfile: toolbox.Dockerfile
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      ROUTES: "172.38.20.0/24 via 172.38.10.10\n172.38.30.0/24 via 172.38.10.10"
+    volumes:
+      - ./outputs:/work/outputs
+    depends_on:
+      - router1
+      - router2
+      - target
+    networks:
+      trace_net_a:
+        ipv4_address: 172.38.10.20
+
+  router1:
+    build:
+      context: .
+      dockerfile: router.Dockerfile
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    sysctls:
+      net.ipv4.ip_forward: "1"
+    environment:
+      ROUTES: "172.38.30.0/24 via 172.38.20.20"
+    networks:
+      trace_net_a:
+        ipv4_address: 172.38.10.10
+      trace_net_b:
+        ipv4_address: 172.38.20.10
+
+  router2:
+    build:
+      context: .
+      dockerfile: router.Dockerfile
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    sysctls:
+      net.ipv4.ip_forward: "1"
+    environment:
+      ROUTES: "172.38.10.0/24 via 172.38.20.10"
+    networks:
+      trace_net_b:
+        ipv4_address: 172.38.20.20
+      trace_net_c:
+        ipv4_address: 172.38.30.10
+
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    cap_add:
+      - NET_ADMIN
+    environment:
+      ROUTES: "172.38.10.0/24 via 172.38.30.10\n172.38.20.0/24 via 172.38.30.10"
+    ports:
+      - "127.0.0.1:18082:8080"
+    networks:
+      trace_net_c:
+        ipv4_address: 172.38.30.20
+
+networks:
+  trace_net_a:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.38.10.0/24
+  trace_net_b:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.38.20.0/24
+  trace_net_c:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.38.30.0/24

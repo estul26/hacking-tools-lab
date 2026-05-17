@@ -10,6 +10,7 @@ environments.
 - [Nmap guide and local Docker lab](labs/nmap/README.md)
 - [Netcat guide and local Docker lab](labs/netcat/README.md)
 - [Real local target lab](labs/local-target/README.md)
+- [Traceroute guide and routed local Docker lab](labs/traceroute/README.md)
 - [Wget guide and local Docker lab](labs/wget/README.md)
 - [Whois guide and local Docker lab](labs/whois/README.md)
 - [Wireshark guide and local packet-analysis lab](labs/wireshark/README.md)
