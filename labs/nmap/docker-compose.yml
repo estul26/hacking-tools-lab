@@ -1,0 +1,51 @@
+name: nmap-lab
+
+services:
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./scans:/work/scans
+    depends_on:
+      - target-web
+      - target-services
+    networks:
+      nmap_net:
+        ipv4_address: 172.30.10.10
+
+  target-web:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python", "/opt/lab/lab_target.py", "web"]
+    expose:
+      - "80"
+    networks:
+      nmap_net:
+        ipv4_address: 172.30.10.20
+
+  target-services:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python", "/opt/lab/lab_target.py", "services"]
+    expose:
+      - "2222"
+      - "2525"
+      - "6379"
+      - "8000"
+      - "5353/udp"
+    networks:
+      nmap_net:
+        ipv4_address: 172.30.10.30
+
+networks:
+  nmap_net:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.30.10.0/24
