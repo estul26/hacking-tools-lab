@@ -1,0 +1,48 @@
+name: tcpdump-lab
+
+services:
+  target-services:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18083:8080"
+      - "127.0.0.1:12527:2525"
+      - "127.0.0.1:16382:6379"
+      - "127.0.0.1:15301:5300/udp"
+    networks:
+      tcpdump_net:
+        ipv4_address: 172.39.90.20
+
+  client:
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    environment:
+      TARGET_HOST: target-services
+    depends_on:
+      - target-services
+    networks:
+      tcpdump_net:
+        ipv4_address: 172.39.90.10
+
+  analyzer:
+    build:
+      context: .
+      dockerfile: analyzer.Dockerfile
+    working_dir: /work
+    volumes:
+      - ./captures:/work/captures
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    depends_on:
+      - client
+    network_mode: "service:client"
+
+networks:
+  tcpdump_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.39.90.0/24
