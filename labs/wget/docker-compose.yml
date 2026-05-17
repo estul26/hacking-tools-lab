@@ -1,0 +1,33 @@
+name: wget-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python", "/opt/lab/wget_target.py"]
+    ports:
+      - "127.0.0.1:18081:8080"
+    networks:
+      wget_net:
+        ipv4_address: 172.35.60.20
+
+  toolbox:
+    build:
+      context: .
+      dockerfile: toolbox.Dockerfile
+    command: ["sleep", "infinity"]
+    volumes:
+      - ./downloads:/work/downloads
+    depends_on:
+      - target
+    networks:
+      wget_net:
+        ipv4_address: 172.35.60.10
+
+networks:
+  wget_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.35.60.0/24
