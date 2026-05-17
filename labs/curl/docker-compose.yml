@@ -1,0 +1,33 @@
+name: curl-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python", "/opt/lab/curl_target.py"]
+    ports:
+      - "127.0.0.1:18080:8080"
+    networks:
+      curl_net:
+        ipv4_address: 172.34.50.20
+
+  toolbox:
+    build:
+      context: .
+      dockerfile: toolbox.Dockerfile
+    command: ["sleep", "infinity"]
+    volumes:
+      - ./outputs:/work/outputs
+    depends_on:
+      - target
+    networks:
+      curl_net:
+        ipv4_address: 172.34.50.10
+
+networks:
+  curl_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.34.50.0/24
