@@ -7,6 +7,7 @@ environments.
 
 - [Curl guide and local Docker lab](labs/curl/README.md)
 - [Dig guide and local Docker lab](labs/dig/README.md)
+- [Masscan guide and local Docker lab](labs/masscan/README.md)
 - [Nmap guide and local Docker lab](labs/nmap/README.md)
 - [Netcat guide and local Docker lab](labs/netcat/README.md)
 - [Real local target lab](labs/local-target/README.md)

@@ -1,0 +1,40 @@
+name: masscan-lab
+
+services:
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./scans:/work/scans
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    depends_on:
+      - target-services
+    networks:
+      masscan_net:
+        ipv4_address: 172.40.100.10
+
+  target-services:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18084:80"
+      - "127.0.0.1:12223:2222"
+      - "127.0.0.1:12528:2525"
+      - "127.0.0.1:16383:6379"
+      - "127.0.0.1:18085:8000"
+    networks:
+      masscan_net:
+        ipv4_address: 172.40.100.20
+
+networks:
+  masscan_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.40.100.0/24
