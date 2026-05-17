@@ -1,0 +1,8 @@
+txt
+json
+yaml
+bak
+conf
+html
+php
+zip

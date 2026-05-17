@@ -1,0 +1,11 @@
+admin
+backup
+dev
+debug
+portal
+private
+status
+health
+login
+missing
+assets
