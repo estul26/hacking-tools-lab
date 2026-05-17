@@ -1,0 +1,33 @@
+name: whois-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python", "/opt/lab/whois_target.py"]
+    ports:
+      - "127.0.0.1:1043:43"
+    networks:
+      whois_net:
+        ipv4_address: 172.37.80.20
+
+  toolbox:
+    build:
+      context: .
+      dockerfile: toolbox.Dockerfile
+    command: ["sleep", "infinity"]
+    volumes:
+      - ./outputs:/work/outputs
+    depends_on:
+      - target
+    networks:
+      whois_net:
+        ipv4_address: 172.37.80.10
+
+networks:
+  whois_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.37.80.0/24
