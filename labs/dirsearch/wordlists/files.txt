@@ -1,0 +1,7 @@
+files/config.%EXT%
+files/report.%EXT%
+files/notes.%EXT%
+assets/app.%EXT%
+assets/style.%EXT%
+downloads/archive.%EXT%
+downloads/missing.%EXT%

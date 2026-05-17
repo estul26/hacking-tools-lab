@@ -1,0 +1,10 @@
+api/
+v1/
+users
+status
+docs/
+api
+reference
+portal
+private
+health
