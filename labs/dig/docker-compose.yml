@@ -1,0 +1,34 @@
+name: dig-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python", "/opt/lab/dig_target.py"]
+    ports:
+      - "127.0.0.1:1053:5353/udp"
+      - "127.0.0.1:1053:5353/tcp"
+    networks:
+      dig_net:
+        ipv4_address: 172.36.70.20
+
+  toolbox:
+    build:
+      context: .
+      dockerfile: toolbox.Dockerfile
+    command: ["sleep", "infinity"]
+    volumes:
+      - ./outputs:/work/outputs
+    depends_on:
+      - target
+    networks:
+      dig_net:
+        ipv4_address: 172.36.70.10
+
+networks:
+  dig_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.36.70.0/24
