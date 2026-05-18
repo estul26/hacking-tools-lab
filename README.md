@@ -11,6 +11,7 @@ environments.
 - [FFUF guide and local Docker lab](labs/ffuf/README.md)
 - [Feroxbuster guide and local Docker lab](labs/feroxbuster/README.md)
 - [Gobuster guide and local Docker lab](labs/gobuster/README.md)
+- [HTTPX guide and local Docker lab](labs/httpx/README.md)
 - [Masscan guide and local Docker lab](labs/masscan/README.md)
 - [Nmap guide and local Docker lab](labs/nmap/README.md)
 - [Netcat guide and local Docker lab](labs/netcat/README.md)
