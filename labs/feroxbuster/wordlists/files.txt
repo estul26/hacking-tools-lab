@@ -1,0 +1,8 @@
+files/config
+files/report
+files/notes
+assets/app
+assets/style
+reports/daily
+downloads/archive
+downloads/missing

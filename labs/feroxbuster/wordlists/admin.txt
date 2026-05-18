@@ -1,0 +1,7 @@
+admin
+admin/panel
+admin/logs
+admin/users
+admin/backup
+admin/tokens
+admin/missing
