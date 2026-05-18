@@ -1,0 +1,29 @@
+id: local-backup-config
+
+info:
+  name: Local Lab Backup Configuration File
+  author: packetlab
+  severity: medium
+  description: Detects the intentionally exposed backup configuration JSON in the local nuclei lab.
+  tags: lab,backup,exposure
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/backup/config.json"
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+      - type: word
+        part: body
+        words:
+          - '"db_password": "local-only-password"'
+          - '"scope": "training"'
+        condition: and
+    extractors:
+      - type: json
+        part: body
+        json:
+          - ".db_user"

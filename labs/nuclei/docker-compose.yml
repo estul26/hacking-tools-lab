@@ -1,0 +1,34 @@
+name: nuclei-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18095:8080"
+    networks:
+      nuclei_net:
+        ipv4_address: 172.49.190.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+      - ./templates:/work/templates:ro
+    depends_on:
+      - target
+    networks:
+      nuclei_net:
+        ipv4_address: 172.49.190.10
+
+networks:
+  nuclei_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.49.190.0/24

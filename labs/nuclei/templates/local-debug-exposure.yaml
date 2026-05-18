@@ -1,0 +1,24 @@
+id: local-debug-exposure
+
+info:
+  name: Local Lab Debug Endpoint Exposure
+  author: packetlab
+  severity: low
+  description: Detects the intentionally exposed debug JSON endpoint in the local nuclei lab.
+  tags: lab,debug,exposure
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/debug"
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+      - type: word
+        part: body
+        words:
+          - '"debug": true'
+          - '"secret_hint": "training-only"'
+        condition: and

@@ -1,0 +1,22 @@
+id: local-powered-by
+
+info:
+  name: Local Lab Technology Header Disclosure
+  author: packetlab
+  severity: info
+  description: Detects the intentionally exposed X-Powered-By header in the local nuclei lab.
+  tags: lab,headers,tech
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/"
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+      - type: word
+        part: header
+        words:
+          - "X-Powered-By: NucleiLab/0.1"

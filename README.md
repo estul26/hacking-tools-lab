@@ -15,6 +15,7 @@ environments.
 - [Nmap guide and local Docker lab](labs/nmap/README.md)
 - [Netcat guide and local Docker lab](labs/netcat/README.md)
 - [Nikto guide and local Docker lab](labs/nikto/README.md)
+- [Nuclei guide and local Docker lab](labs/nuclei/README.md)
 - [Real local target lab](labs/local-target/README.md)
 - [RustScan guide and local Docker lab](labs/rustscan/README.md)
 - [Sqlmap guide and local Docker lab](labs/sqlmap/README.md)

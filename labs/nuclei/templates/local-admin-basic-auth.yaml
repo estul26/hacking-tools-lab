@@ -1,0 +1,22 @@
+id: local-admin-basic-auth
+
+info:
+  name: Local Lab Admin Basic Authentication
+  author: packetlab
+  severity: info
+  description: Detects the intentionally protected admin endpoint in the local nuclei lab.
+  tags: lab,admin,basic-auth
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/admin/"
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 401
+      - type: word
+        part: header
+        words:
+          - 'Basic realm="nuclei-lab-admin"'

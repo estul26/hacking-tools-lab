@@ -1,0 +1,17 @@
+id: local-missing-security-headers
+
+info:
+  name: Local Lab Missing Browser Security Headers
+  author: packetlab
+  severity: low
+  description: Detects intentionally missing browser security headers on the local nuclei lab homepage.
+  tags: lab,headers,misconfig
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/"
+    matchers:
+      - type: dsl
+        dsl:
+          - "status_code == 200 && !contains(tolower(all_headers), 'content-security-policy') && !contains(tolower(all_headers), 'x-frame-options')"

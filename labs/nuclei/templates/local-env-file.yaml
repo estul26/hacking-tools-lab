@@ -1,0 +1,24 @@
+id: local-env-file
+
+info:
+  name: Local Lab Environment File Exposure
+  author: packetlab
+  severity: medium
+  description: Detects the intentionally exposed .env file in the local nuclei lab.
+  tags: lab,env,exposure
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/.env"
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+      - type: word
+        part: body
+        words:
+          - "APP_DEBUG=true"
+          - "NUCLEI_LAB_TOKEN=local-training-token"
+        condition: and
