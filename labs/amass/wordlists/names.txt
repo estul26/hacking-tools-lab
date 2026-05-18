@@ -1,0 +1,9 @@
+admin
+api
+cdn
+dev
+mail
+portal
+status
+vpn
+www

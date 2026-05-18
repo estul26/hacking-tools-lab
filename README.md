@@ -5,6 +5,7 @@ environments.
 
 ## Labs
 
+- [Amass guide and local DNS workflow lab](labs/amass/README.md)
 - [Curl guide and local Docker lab](labs/curl/README.md)
 - [Dig guide and local Docker lab](labs/dig/README.md)
 - [Dirsearch guide and local Docker lab](labs/dirsearch/README.md)
