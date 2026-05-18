@@ -1,0 +1,15 @@
+/*
+Theme Name: PacketLab
+Theme URI: https://example.test/packetlab
+Author: Packet Lab
+Author URI: https://example.test
+Description: Local-only theme for WPScan enumeration practice.
+Version: 0.4.2
+License: GPL-2.0-or-later
+Text Domain: packetlab
+*/
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}

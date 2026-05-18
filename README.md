@@ -22,4 +22,5 @@ environments.
 - [Traceroute guide and routed local Docker lab](labs/traceroute/README.md)
 - [Wget guide and local Docker lab](labs/wget/README.md)
 - [Whois guide and local Docker lab](labs/whois/README.md)
+- [WPScan guide and local WordPress lab](labs/wpscan/README.md)
 - [Wireshark guide and local packet-analysis lab](labs/wireshark/README.md)

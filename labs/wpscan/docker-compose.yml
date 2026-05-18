@@ -1,0 +1,81 @@
+name: wpscan-lab
+
+services:
+  db:
+    image: mariadb:11.4
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+      MARIADB_ROOT_PASSWORD: wordpress-root
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      wpscan_net:
+        ipv4_address: 172.48.180.40
+
+  wordpress:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'http://wordpress');
+        define('WP_SITEURL', 'http://wordpress');
+        define('DISALLOW_FILE_EDIT', true);
+    ports:
+      - "127.0.0.1:18094:80"
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - db
+    networks:
+      wpscan_net:
+        ipv4_address: 172.48.180.20
+
+  wpcli:
+    image: wordpress:cli-2.11-php8.3
+    command: ["sleep", "infinity"]
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - db
+      - wordpress
+    networks:
+      wpscan_net:
+        ipv4_address: 172.48.180.30
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+      - ./wordlists:/work/wordlists:ro
+    depends_on:
+      - wordpress
+    networks:
+      wpscan_net:
+        ipv4_address: 172.48.180.10
+
+networks:
+  wpscan_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.48.180.0/24
+
+volumes:
+  db_data:
+  wordpress_data:
