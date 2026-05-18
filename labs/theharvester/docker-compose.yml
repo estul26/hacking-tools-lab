@@ -1,0 +1,35 @@
+name: theharvester-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18099:8080"
+    networks:
+      theharvester_net:
+        ipv4_address: 172.53.230.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+      - ./fixtures:/work/fixtures:ro
+      - ./scope:/work/scope:ro
+    depends_on:
+      - target
+    networks:
+      theharvester_net:
+        ipv4_address: 172.53.230.10
+
+networks:
+  theharvester_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.53.230.0/24

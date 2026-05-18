@@ -1,0 +1,23 @@
+{
+  "domain": "packetlab.local",
+  "emails": [
+    "admin@packetlab.local",
+    "api-team@packetlab.local",
+    "dev-team@packetlab.local",
+    "hello@packetlab.local",
+    "postmaster@packetlab.local",
+    "status@packetlab.local"
+  ],
+  "hosts": [
+    "admin.packetlab.local",
+    "api.packetlab.local",
+    "dev.packetlab.local",
+    "mail.packetlab.local",
+    "status.packetlab.local",
+    "www.packetlab.local"
+  ],
+  "ips": [
+    "172.53.230.20"
+  ],
+  "source": "local-fixture"
+}

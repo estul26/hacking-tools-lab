@@ -23,6 +23,7 @@ environments.
 - [Subfinder guide and local workflow lab](labs/subfinder/README.md)
 - [Sqlmap guide and local Docker lab](labs/sqlmap/README.md)
 - [Tcpdump guide and local packet-capture lab](labs/tcpdump/README.md)
+- [theHarvester guide and local OSINT workflow lab](labs/theharvester/README.md)
 - [Traceroute guide and routed local Docker lab](labs/traceroute/README.md)
 - [Wget guide and local Docker lab](labs/wget/README.md)
 - [Whois guide and local Docker lab](labs/whois/README.md)
