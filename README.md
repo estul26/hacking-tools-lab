@@ -14,6 +14,7 @@ environments.
 - [Masscan guide and local Docker lab](labs/masscan/README.md)
 - [Nmap guide and local Docker lab](labs/nmap/README.md)
 - [Netcat guide and local Docker lab](labs/netcat/README.md)
+- [Nikto guide and local Docker lab](labs/nikto/README.md)
 - [Real local target lab](labs/local-target/README.md)
 - [RustScan guide and local Docker lab](labs/rustscan/README.md)
 - [Tcpdump guide and local packet-capture lab](labs/tcpdump/README.md)

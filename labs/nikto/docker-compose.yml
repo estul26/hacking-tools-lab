@@ -1,0 +1,33 @@
+name: nikto-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18092:8080"
+    networks:
+      nikto_net:
+        ipv4_address: 172.46.160.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+    depends_on:
+      - target
+    networks:
+      nikto_net:
+        ipv4_address: 172.46.160.10
+
+networks:
+  nikto_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.46.160.0/24
