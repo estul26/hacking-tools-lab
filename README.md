@@ -11,6 +11,7 @@ environments.
 - [Dirsearch guide and local Docker lab](labs/dirsearch/README.md)
 - [FFUF guide and local Docker lab](labs/ffuf/README.md)
 - [Feroxbuster guide and local Docker lab](labs/feroxbuster/README.md)
+- [Gau guide and local URL collection workflow lab](labs/gau/README.md)
 - [Gobuster guide and local Docker lab](labs/gobuster/README.md)
 - [HTTPX guide and local Docker lab](labs/httpx/README.md)
 - [Masscan guide and local Docker lab](labs/masscan/README.md)

@@ -1,0 +1,12 @@
+https://www.packetlab.local/
+https://www.packetlab.local/index.html
+https://www.packetlab.local/search?q=packet
+https://www.packetlab.local/download?file=report.pdf
+https://api.packetlab.local/v1/users?id=1
+https://api.packetlab.local/v1/search?q=packet
+https://api.packetlab.local/v1/export?format=json
+https://admin.packetlab.local/login
+https://admin.packetlab.local/debug/vars
+https://cdn.packetlab.local/assets/app.js
+https://legacy.packetlab.local/old
+https://www.packetlab.local/search?q=packet
