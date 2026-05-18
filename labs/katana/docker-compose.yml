@@ -1,0 +1,34 @@
+name: katana-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18102:8080"
+    networks:
+      katana_net:
+        ipv4_address: 172.56.60.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+      - ./scope:/work/scope:ro
+    depends_on:
+      - target
+    networks:
+      katana_net:
+        ipv4_address: 172.56.60.10
+
+networks:
+  katana_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.56.60.0/24
