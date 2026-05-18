@@ -1,0 +1,11 @@
+https://www.packetlab.local/
+https://www.packetlab.local/index.html
+https://www.packetlab.local/login
+https://www.packetlab.local/search?q=packet
+https://api.packetlab.local/api/v1/users?id=1
+https://api.packetlab.local/api/v1/search?q=packet
+https://admin.packetlab.local/admin
+https://admin.packetlab.local/backup/config.json
+https://static.packetlab.local/static/app.js
+https://old.packetlab.local/deprecated
+https://www.packetlab.local/login
