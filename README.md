@@ -17,6 +17,7 @@ environments.
 - [Nikto guide and local Docker lab](labs/nikto/README.md)
 - [Real local target lab](labs/local-target/README.md)
 - [RustScan guide and local Docker lab](labs/rustscan/README.md)
+- [Sqlmap guide and local Docker lab](labs/sqlmap/README.md)
 - [Tcpdump guide and local packet-capture lab](labs/tcpdump/README.md)
 - [Traceroute guide and routed local Docker lab](labs/traceroute/README.md)
 - [Wget guide and local Docker lab](labs/wget/README.md)
