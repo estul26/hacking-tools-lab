@@ -1,0 +1,6 @@
+{"host":"www.packetlab.local","input":"packetlab.local","source":"local-fixture"}
+{"host":"api.packetlab.local","input":"packetlab.local","source":"local-fixture"}
+{"host":"admin.packetlab.local","input":"packetlab.local","source":"local-fixture"}
+{"host":"dev.packetlab.local","input":"packetlab.local","source":"local-fixture"}
+{"host":"cdn.packetlab.local","input":"packetlab.local","source":"local-fixture"}
+{"host":"status.packetlab.local","input":"packetlab.local","source":"local-fixture"}

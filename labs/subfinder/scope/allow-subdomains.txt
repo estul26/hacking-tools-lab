@@ -1,0 +1,6 @@
+www.packetlab.local
+api.packetlab.local
+admin.packetlab.local
+dev.packetlab.local
+cdn.packetlab.local
+status.packetlab.local

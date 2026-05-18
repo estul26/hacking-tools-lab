@@ -1,0 +1,35 @@
+name: subfinder-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18097:8080"
+    networks:
+      subfinder_net:
+        ipv4_address: 172.51.210.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+      - ./fixtures:/work/fixtures:ro
+      - ./scope:/work/scope:ro
+    depends_on:
+      - target
+    networks:
+      subfinder_net:
+        ipv4_address: 172.51.210.10
+
+networks:
+  subfinder_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.51.210.0/24

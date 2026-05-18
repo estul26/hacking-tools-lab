@@ -19,6 +19,7 @@ environments.
 - [Nuclei guide and local Docker lab](labs/nuclei/README.md)
 - [Real local target lab](labs/local-target/README.md)
 - [RustScan guide and local Docker lab](labs/rustscan/README.md)
+- [Subfinder guide and local workflow lab](labs/subfinder/README.md)
 - [Sqlmap guide and local Docker lab](labs/sqlmap/README.md)
 - [Tcpdump guide and local packet-capture lab](labs/tcpdump/README.md)
 - [Traceroute guide and routed local Docker lab](labs/traceroute/README.md)
