@@ -1,0 +1,34 @@
+name: msfconsole-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18105:8080"
+    networks:
+      msfconsole_net:
+        ipv4_address: 172.59.81.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+      - ./resources:/work/resources:ro
+    depends_on:
+      - target
+    networks:
+      msfconsole_net:
+        ipv4_address: 172.59.81.10
+
+networks:
+  msfconsole_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.59.81.0/24

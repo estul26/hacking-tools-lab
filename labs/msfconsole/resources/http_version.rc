@@ -1,0 +1,8 @@
+spool /work/outputs/http-version-spool.txt
+use auxiliary/scanner/http/http_version
+set RHOSTS 172.59.81.20
+set RPORT 8080
+set THREADS 1
+run
+spool off
+exit -y

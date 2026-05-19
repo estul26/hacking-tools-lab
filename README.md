@@ -22,6 +22,7 @@ environments.
 - [John the Ripper guide and local hash lab](labs/john/README.md)
 - [Katana guide and local crawling workflow lab](labs/katana/README.md)
 - [Masscan guide and local Docker lab](labs/masscan/README.md)
+- [MSFConsole guide and local auxiliary scanner lab](labs/msfconsole/README.md)
 - [Nmap guide and local Docker lab](labs/nmap/README.md)
 - [Netcat guide and local Docker lab](labs/netcat/README.md)
 - [Nikto guide and local Docker lab](labs/nikto/README.md)
