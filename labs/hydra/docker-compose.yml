@@ -1,0 +1,34 @@
+name: hydra-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18103:8080"
+    networks:
+      hydra_net:
+        ipv4_address: 172.57.70.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+      - ./wordlists:/work/wordlists:ro
+    depends_on:
+      - target
+    networks:
+      hydra_net:
+        ipv4_address: 172.57.70.10
+
+networks:
+  hydra_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.57.70.0/24
