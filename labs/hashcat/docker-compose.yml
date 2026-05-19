@@ -1,0 +1,13 @@
+name: hashcat-lab
+
+services:
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./hashes:/work/hashes:ro
+      - ./outputs:/work/outputs
+      - ./wordlists:/work/wordlists:ro

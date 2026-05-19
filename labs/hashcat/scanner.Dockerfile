@@ -1,0 +1,16 @@
+FROM debian:trixie-slim
+
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        clinfo \
+        hashcat \
+        jq \
+        ocl-icd-libopencl1 \
+        pocl-opencl-icd \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /work
+
+CMD ["sleep", "infinity"]
