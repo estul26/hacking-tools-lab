@@ -1,0 +1,35 @@
+name: responder-lab
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    command: ["sleep", "infinity"]
+    networks:
+      responder_net:
+        ipv4_address: 172.60.82.20
+
+  responder:
+    build:
+      context: .
+      dockerfile: responder.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    depends_on:
+      - client
+    networks:
+      responder_net:
+        ipv4_address: 172.60.82.10
+
+networks:
+  responder_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.60.82.0/24
