@@ -15,6 +15,7 @@ environments.
 - [Gobuster guide and local Docker lab](labs/gobuster/README.md)
 - [HTTPX guide and local Docker lab](labs/httpx/README.md)
 - [Hydra guide and local authentication lab](labs/hydra/README.md)
+- [John the Ripper guide and local hash lab](labs/john/README.md)
 - [Katana guide and local crawling workflow lab](labs/katana/README.md)
 - [Masscan guide and local Docker lab](labs/masscan/README.md)
 - [Nmap guide and local Docker lab](labs/nmap/README.md)
