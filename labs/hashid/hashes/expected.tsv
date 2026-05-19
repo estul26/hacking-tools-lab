@@ -1,0 +1,5 @@
+label	hash	expected_candidate	hashcat_mode	john_format
+raw-md5	7bdd907b655554a1d025bb4f3a45dac0	MD5	0	raw-md5
+raw-sha256	a7573b4627847cb95647f0c93327d549fae425b5c9ed0293502c04d9c3e49c43	SHA-256	1400	raw-sha256
+md5crypt	$1$aa$cXF0EJ/VMCwoNlY4/xPlT.	MD5 Crypt	500	md5crypt
+bcrypt	$2y$10$usesomesillystringfore7hnbRJHxXVLeakoG8K30oukPsA.ztMG	bcrypt	3200	bcrypt
