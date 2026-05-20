@@ -6,6 +6,7 @@ environments.
 ## Labs
 
 - [Amass guide and local DNS workflow lab](labs/amass/README.md)
+- [BloodHound.py guide and local graph fixture lab](labs/bloodhound-python/README.md)
 - [CeWL guide and local wordlist lab](labs/cewl/README.md)
 - [Crunch guide and local wordlist lab](labs/crunch/README.md)
 - [Curl guide and local Docker lab](labs/curl/README.md)

@@ -1,0 +1,35 @@
+name: bloodhound-python-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    ports:
+      - "127.0.0.1:18109:8080"
+    networks:
+      bloodhound_net:
+        ipv4_address: 172.62.84.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./fixtures:/work/fixtures:ro
+      - ./outputs:/work/outputs
+      - ./scope:/work/scope:ro
+    depends_on:
+      - target
+    networks:
+      bloodhound_net:
+        ipv4_address: 172.62.84.10
+
+networks:
+  bloodhound_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.62.84.0/24

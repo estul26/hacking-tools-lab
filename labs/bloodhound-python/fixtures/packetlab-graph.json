@@ -1,0 +1,93 @@
+{
+  "collection": "local-fixture",
+  "domain": "PACKETLAB.LOCAL",
+  "notes": "Synthetic BloodHound-style graph for local training only.",
+  "users": [
+    {
+      "id": "S-1-5-21-424242-1001",
+      "name": "ALICE@PACKETLAB.LOCAL",
+      "samaccountname": "alice",
+      "enabled": true,
+      "highvalue": false
+    },
+    {
+      "id": "S-1-5-21-424242-1002",
+      "name": "BOB@PACKETLAB.LOCAL",
+      "samaccountname": "bob",
+      "enabled": true,
+      "highvalue": false
+    },
+    {
+      "id": "S-1-5-21-424242-1500",
+      "name": "HELPDESK-SVC@PACKETLAB.LOCAL",
+      "samaccountname": "helpdesk-svc",
+      "enabled": true,
+      "highvalue": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "S-1-5-21-424242-512",
+      "name": "DOMAIN ADMINS@PACKETLAB.LOCAL",
+      "highvalue": true
+    },
+    {
+      "id": "S-1-5-21-424242-1101",
+      "name": "HELPDESK@PACKETLAB.LOCAL",
+      "highvalue": false
+    },
+    {
+      "id": "S-1-5-21-424242-1102",
+      "name": "WORKSTATION ADMINS@PACKETLAB.LOCAL",
+      "highvalue": false
+    }
+  ],
+  "computers": [
+    {
+      "id": "S-1-5-21-424242-2101",
+      "name": "DC1.PACKETLAB.LOCAL",
+      "enabled": true,
+      "operatingsystem": "Windows Server Lab",
+      "highvalue": true
+    },
+    {
+      "id": "S-1-5-21-424242-2102",
+      "name": "WS1.PACKETLAB.LOCAL",
+      "enabled": true,
+      "operatingsystem": "Windows Workstation Lab",
+      "highvalue": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "ALICE@PACKETLAB.LOCAL",
+      "target": "HELPDESK@PACKETLAB.LOCAL",
+      "relationship": "MemberOf"
+    },
+    {
+      "source": "HELPDESK@PACKETLAB.LOCAL",
+      "target": "WORKSTATION ADMINS@PACKETLAB.LOCAL",
+      "relationship": "MemberOf"
+    },
+    {
+      "source": "WORKSTATION ADMINS@PACKETLAB.LOCAL",
+      "target": "WS1.PACKETLAB.LOCAL",
+      "relationship": "AdminTo"
+    },
+    {
+      "source": "HELPDESK-SVC@PACKETLAB.LOCAL",
+      "target": "WS1.PACKETLAB.LOCAL",
+      "relationship": "CanRDP"
+    },
+    {
+      "source": "BOB@PACKETLAB.LOCAL",
+      "target": "DOMAIN ADMINS@PACKETLAB.LOCAL",
+      "relationship": "MemberOf"
+    },
+    {
+      "source": "DOMAIN ADMINS@PACKETLAB.LOCAL",
+      "target": "DC1.PACKETLAB.LOCAL",
+      "relationship": "AdminTo"
+    }
+  ]
+}
