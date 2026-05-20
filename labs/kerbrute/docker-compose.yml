@@ -1,0 +1,32 @@
+name: kerbrute-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    networks:
+      kerbrute_net:
+        ipv4_address: 172.66.88.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+      - ./wordlists:/work/wordlists:ro
+    depends_on:
+      - target
+    networks:
+      kerbrute_net:
+        ipv4_address: 172.66.88.10
+
+networks:
+  kerbrute_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.66.88.0/24

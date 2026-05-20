@@ -23,6 +23,7 @@ environments.
 - [Hydra guide and local authentication lab](labs/hydra/README.md)
 - [John the Ripper guide and local hash lab](labs/john/README.md)
 - [Katana guide and local crawling workflow lab](labs/katana/README.md)
+- [Kerbrute guide and local Kerberos lab](labs/kerbrute/README.md)
 - [Ldapsearch guide and local OpenLDAP lab](labs/ldapsearch/README.md)
 - [Masscan guide and local Docker lab](labs/masscan/README.md)
 - [MSFConsole guide and local auxiliary scanner lab](labs/msfconsole/README.md)
