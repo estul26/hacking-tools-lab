@@ -1,0 +1,31 @@
+name: ldapsearch-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    networks:
+      ldapsearch_net:
+        ipv4_address: 172.63.85.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+    depends_on:
+      - target
+    networks:
+      ldapsearch_net:
+        ipv4_address: 172.63.85.10
+
+networks:
+  ldapsearch_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.63.85.0/24

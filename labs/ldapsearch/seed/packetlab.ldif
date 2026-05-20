@@ -1,0 +1,58 @@
+dn: ou=People,dc=packetlab,dc=local
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,dc=packetlab,dc=local
+objectClass: organizationalUnit
+ou: Groups
+
+dn: uid=alice,ou=People,dc=packetlab,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Alice Packet
+sn: Packet
+givenName: Alice
+uid: alice
+mail: alice@packetlab.local
+description: Lab helpdesk user
+
+dn: uid=bob,ou=People,dc=packetlab,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Bob Trace
+sn: Trace
+givenName: Bob
+uid: bob
+mail: bob@packetlab.local
+description: Lab engineering user
+
+dn: uid=svc-backup,ou=People,dc=packetlab,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Backup Service
+sn: Service
+givenName: Backup
+uid: svc-backup
+mail: svc-backup@packetlab.local
+description: Lab service account for search practice
+
+dn: cn=helpdesk,ou=Groups,dc=packetlab,dc=local
+objectClass: groupOfNames
+objectClass: top
+cn: helpdesk
+description: Lab helpdesk group
+member: uid=alice,ou=People,dc=packetlab,dc=local
+
+dn: cn=engineering,ou=Groups,dc=packetlab,dc=local
+objectClass: groupOfNames
+objectClass: top
+cn: engineering
+description: Lab engineering group
+member: uid=bob,ou=People,dc=packetlab,dc=local
+member: uid=svc-backup,ou=People,dc=packetlab,dc=local
