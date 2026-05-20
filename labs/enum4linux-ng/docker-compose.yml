@@ -1,0 +1,31 @@
+name: enum4linux-ng-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    networks:
+      enum4linux_ng_net:
+        ipv4_address: 172.65.87.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+    depends_on:
+      - target
+    networks:
+      enum4linux_ng_net:
+        ipv4_address: 172.65.87.10
+
+networks:
+  enum4linux_ng_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.65.87.0/24
