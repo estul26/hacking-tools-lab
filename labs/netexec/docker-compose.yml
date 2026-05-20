@@ -1,0 +1,31 @@
+name: netexec-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    networks:
+      netexec_net:
+        ipv4_address: 172.61.83.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+    depends_on:
+      - target
+    networks:
+      netexec_net:
+        ipv4_address: 172.61.83.10
+
+networks:
+  netexec_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.61.83.0/24

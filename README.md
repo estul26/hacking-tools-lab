@@ -25,6 +25,7 @@ environments.
 - [MSFConsole guide and local auxiliary scanner lab](labs/msfconsole/README.md)
 - [Nmap guide and local Docker lab](labs/nmap/README.md)
 - [Netcat guide and local Docker lab](labs/netcat/README.md)
+- [NetExec guide and local SSH/SMB lab](labs/netexec/README.md)
 - [Nikto guide and local Docker lab](labs/nikto/README.md)
 - [Nuclei guide and local Docker lab](labs/nuclei/README.md)
 - [Real local target lab](labs/local-target/README.md)
