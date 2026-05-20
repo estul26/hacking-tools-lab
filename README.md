@@ -34,6 +34,7 @@ environments.
 - [Responder guide and local analyze-mode lab](labs/responder/README.md)
 - [RustScan guide and local Docker lab](labs/rustscan/README.md)
 - [Searchsploit guide and local Exploit-DB search lab](labs/searchsploit/README.md)
+- [Smbclient guide and local Samba lab](labs/smbclient/README.md)
 - [Subfinder guide and local workflow lab](labs/subfinder/README.md)
 - [Sqlmap guide and local Docker lab](labs/sqlmap/README.md)
 - [Tcpdump guide and local packet-capture lab](labs/tcpdump/README.md)

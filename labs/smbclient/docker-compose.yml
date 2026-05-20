@@ -1,0 +1,32 @@
+name: smbclient-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    networks:
+      smbclient_net:
+        ipv4_address: 172.64.86.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+      - ./upload:/work/upload:ro
+    depends_on:
+      - target
+    networks:
+      smbclient_net:
+        ipv4_address: 172.64.86.10
+
+networks:
+  smbclient_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.64.86.0/24
