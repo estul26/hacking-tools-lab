@@ -1,0 +1,31 @@
+name: evil-winrm-lab
+
+services:
+  target:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    networks:
+      evil_winrm_net:
+        ipv4_address: 172.67.89.20
+
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+    depends_on:
+      - target
+    networks:
+      evil_winrm_net:
+        ipv4_address: 172.67.89.10
+
+networks:
+  evil_winrm_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.67.89.0/24
