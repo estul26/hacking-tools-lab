@@ -1,0 +1,45 @@
+name: bettercap-lab
+
+services:
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./outputs:/work/outputs
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    depends_on:
+      - target-web
+      - target-services
+    networks:
+      bettercap_net:
+        ipv4_address: 172.68.90.10
+
+  target-web:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python3", "/opt/lab/target_services.py", "web"]
+    networks:
+      bettercap_net:
+        ipv4_address: 172.68.90.20
+
+  target-services:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+    command: ["python3", "/opt/lab/target_services.py", "services"]
+    networks:
+      bettercap_net:
+        ipv4_address: 172.68.90.30
+
+networks:
+  bettercap_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.68.90.0/24

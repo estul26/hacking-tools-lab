@@ -9,6 +9,7 @@ environments.
 - [Airodump-ng guide and local wireless-metadata replay lab](labs/airodump-ng/README.md)
 - [Aireplay-ng guide and local no-radio injection-safety lab](labs/aireplay-ng/README.md)
 - [Amass guide and local DNS workflow lab](labs/amass/README.md)
+- [Bettercap guide and local network discovery lab](labs/bettercap/README.md)
 - [BloodHound.py guide and local graph fixture lab](labs/bloodhound-python/README.md)
 - [CeWL guide and local wordlist lab](labs/cewl/README.md)
 - [Crunch guide and local wordlist lab](labs/crunch/README.md)
