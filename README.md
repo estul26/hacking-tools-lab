@@ -5,6 +5,7 @@ environments.
 
 ## Labs
 
+- [Aircrack-ng guide and local wireless-capture fixture lab](labs/aircrack-ng/README.md)
 - [Amass guide and local DNS workflow lab](labs/amass/README.md)
 - [BloodHound.py guide and local graph fixture lab](labs/bloodhound-python/README.md)
 - [CeWL guide and local wordlist lab](labs/cewl/README.md)
