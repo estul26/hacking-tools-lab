@@ -17,6 +17,7 @@ environments.
 - [Dig guide and local Docker lab](labs/dig/README.md)
 - [Dirsearch guide and local Docker lab](labs/dirsearch/README.md)
 - [Enum4linux-ng guide and local Samba enumeration lab](labs/enum4linux-ng/README.md)
+- [ExifTool guide and local metadata lab](labs/exiftool/README.md)
 - [Evil-WinRM guide and local WinRM-style lab](labs/evil-winrm/README.md)
 - [FFUF guide and local Docker lab](labs/ffuf/README.md)
 - [Feroxbuster guide and local Docker lab](labs/feroxbuster/README.md)
