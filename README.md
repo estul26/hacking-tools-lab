@@ -44,6 +44,7 @@ environments.
 - [Nuclei guide and local Docker lab](labs/nuclei/README.md)
 - [Objdump guide and local binary-inspection lab](labs/objdump/README.md)
 - [Radare2 guide and local reverse-engineering lab](labs/radare2/README.md)
+- [Readelf guide and local ELF-inspection lab](labs/readelf/README.md)
 - [Real local target lab](labs/local-target/README.md)
 - [Responder guide and local analyze-mode lab](labs/responder/README.md)
 - [RustScan guide and local Docker lab](labs/rustscan/README.md)
