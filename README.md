@@ -60,3 +60,4 @@ environments.
 - [WPScan guide and local WordPress lab](labs/wpscan/README.md)
 - [Wireshark guide and local packet-analysis lab](labs/wireshark/README.md)
 - [Xxd guide and local hex-dump lab](labs/xxd/README.md)
+- [YARA guide and local rule-matching lab](labs/yara/README.md)

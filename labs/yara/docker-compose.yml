@@ -1,0 +1,13 @@
+name: yara-lab
+
+services:
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    volumes:
+      - ./fixtures:/work/fixtures
+      - ./outputs:/work/outputs
+      - ./rules:/work/rules:ro
