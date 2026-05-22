@@ -48,6 +48,7 @@ environments.
 - [Tcpdump guide and local packet-capture lab](labs/tcpdump/README.md)
 - [theHarvester guide and local OSINT workflow lab](labs/theharvester/README.md)
 - [Traceroute guide and routed local Docker lab](labs/traceroute/README.md)
+- [Volatility3 guide and local memory-forensics lab](labs/volatility3/README.md)
 - [Waybackurls guide and local archive workflow lab](labs/waybackurls/README.md)
 - [Wget guide and local Docker lab](labs/wget/README.md)
 - [Whois guide and local Docker lab](labs/whois/README.md)
