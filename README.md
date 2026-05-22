@@ -47,6 +47,7 @@ environments.
 - [Smbclient guide and local Samba lab](labs/smbclient/README.md)
 - [Subfinder guide and local workflow lab](labs/subfinder/README.md)
 - [Sqlmap guide and local Docker lab](labs/sqlmap/README.md)
+- [Strings guide and local binary-triage lab](labs/strings/README.md)
 - [Tcpdump guide and local packet-capture lab](labs/tcpdump/README.md)
 - [theHarvester guide and local OSINT workflow lab](labs/theharvester/README.md)
 - [Traceroute guide and routed local Docker lab](labs/traceroute/README.md)
