@@ -23,6 +23,7 @@ environments.
 - [FFUF guide and local Docker lab](labs/ffuf/README.md)
 - [Feroxbuster guide and local Docker lab](labs/feroxbuster/README.md)
 - [File guide and local type-identification lab](labs/file/README.md)
+- [Foremost guide and local file-carving lab](labs/foremost/README.md)
 - [Gau guide and local URL collection workflow lab](labs/gau/README.md)
 - [Gobuster guide and local Docker lab](labs/gobuster/README.md)
 - [HashID guide and local hash identification lab](labs/hashid/README.md)
