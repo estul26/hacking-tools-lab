@@ -42,6 +42,7 @@ environments.
 - [NetExec guide and local SSH/SMB lab](labs/netexec/README.md)
 - [Nikto guide and local Docker lab](labs/nikto/README.md)
 - [Nuclei guide and local Docker lab](labs/nuclei/README.md)
+- [Objdump guide and local binary-inspection lab](labs/objdump/README.md)
 - [Radare2 guide and local reverse-engineering lab](labs/radare2/README.md)
 - [Real local target lab](labs/local-target/README.md)
 - [Responder guide and local analyze-mode lab](labs/responder/README.md)
