@@ -30,6 +30,7 @@ environments.
 - [Katana guide and local crawling workflow lab](labs/katana/README.md)
 - [Kerbrute guide and local Kerberos lab](labs/kerbrute/README.md)
 - [Ldapsearch guide and local OpenLDAP lab](labs/ldapsearch/README.md)
+- [Macchanger guide and local interface lab](labs/macchanger/README.md)
 - [Masscan guide and local Docker lab](labs/masscan/README.md)
 - [MSFConsole guide and local auxiliary scanner lab](labs/msfconsole/README.md)
 - [Nmap guide and local Docker lab](labs/nmap/README.md)

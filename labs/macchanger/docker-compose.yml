@@ -1,0 +1,13 @@
+name: macchanger-lab
+
+services:
+  scanner:
+    build:
+      context: .
+      dockerfile: scanner.Dockerfile
+    command: ["sleep", "infinity"]
+    working_dir: /work
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./outputs:/work/outputs
