@@ -10,6 +10,7 @@ environments.
 - [Aireplay-ng guide and local no-radio injection-safety lab](labs/aireplay-ng/README.md)
 - [Amass guide and local DNS workflow lab](labs/amass/README.md)
 - [Bettercap guide and local network discovery lab](labs/bettercap/README.md)
+- [Binwalk guide and local firmware lab](labs/binwalk/README.md)
 - [BloodHound.py guide and local graph fixture lab](labs/bloodhound-python/README.md)
 - [CeWL guide and local wordlist lab](labs/cewl/README.md)
 - [Crunch guide and local wordlist lab](labs/crunch/README.md)

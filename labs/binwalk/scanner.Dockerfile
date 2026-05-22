@@ -1,0 +1,19 @@
+FROM debian:trixie-slim
+
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        binwalk \
+        file \
+        gzip \
+        jq \
+        python3 \
+        tar \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY generate_fixture.py /usr/local/bin/generate_fixture.py
+
+WORKDIR /work
+
+CMD ["sleep", "infinity"]
